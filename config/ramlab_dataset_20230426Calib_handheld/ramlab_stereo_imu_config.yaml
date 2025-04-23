@@ -1,7 +1,7 @@
 %YAML:1.0
 
 # ===============================================================
-# Vehicle Seuqneces
+# UGV Seuqneces
 # ===============================================================
 
 
@@ -11,14 +11,16 @@ imu: 1
 num_of_cam: 2  
 
 imu_topic: "/stim300/imu/data_raw"
-image0_topic: "/stereo/vehicle_frame_left/image_raw"
-image1_topic: "/stereo/vehicle_frame_right/image_raw"
+# image0_topic: "/stereo/frame_left/image_raw"
+# image1_topic: "/stereo/frame_right/image_raw"
+image0_topic: "/cam0/image_raw"
+image1_topic: "/cam1/image_raw"
 output_path: "/home/puonn/fusion_portable_ws/src/VINS-Fusion/output"
 
 cam0_calib: "cam0_pinhole.yaml"
 cam1_calib: "cam1_pinhole.yaml"
-image_width: 1024 #640
-image_height: 768 #480
+image_width: 2048 #1024 #640
+image_height: 1536 #768 #480
    
 
 # Extrinsic parameter between IMU and Camera.
@@ -29,19 +31,19 @@ body_T_cam0: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [-0.0075,    -0.0213,    0.9997, 0.314040,
-          -0.9999,    -0.0031,   -0.0075, 0.384130,
-           0.0032,   -0.9997,    -0.0213, -0.066407,
-           0, 0, 0, 1]
+   data:   [-0.0077,    -0.0008,    1.0000,     0.0939,
+            -0.9998,     0.0179,    -0.0077,    0.0632,
+            -0.0179,    -0.9998,    -0.0010,   -0.0213,
+            0.0000,      0.0000,     0.0000,    1.0000]
 
 body_T_cam1: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
-   data: [-0.019611,   -0.011393,    0.999742, 0.297905,
-           -0.999746,   -0.010849,   -0.019735, -0.450664,
-          0.011071,   -0.999876,   -0.011178, -0.062029,
-          0, 0, 0, 1]
+   data:    [-1.0000,  -0.0073,    -0.0023,    0.0688,
+             0.0025,   -0.0383,    -0.9993,    -0.1749,
+             0.0072,   -0.9992,    0.0383,     -0.0127,
+             0.0000,    0.0000,    0.0000,     1.0000]
 
 #Multiple thread support
 multiple_thread: 1
